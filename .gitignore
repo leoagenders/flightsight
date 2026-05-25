@@ -216,3 +216,13 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+# --- FlightSight project-specific ---
+config_local.py
+data/*.db
+data/*.db-journal
+data/*.db-wal
+data/*.db-shm
+*.log
+logs/
+*.bak
