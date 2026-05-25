@@ -10,11 +10,13 @@ User=fefifofum
 Group=fefifofum
 WorkingDirectory=/home/fefifofum/flightsight
 ExecStart=/home/fefifofum/trainwatch/venv/bin/python -m flightsight.collector
+Environment=PYTHONUNBUFFERED=1
 Restart=on-failure
 RestartSec=10
 StandardOutput=journal
 StandardError=journal
 SyslogIdentifier=flightsight-collector
+
 
 # Hardening — keep this thing in its lane
 NoNewPrivileges=true
