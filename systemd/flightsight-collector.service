@@ -1,0 +1,30 @@
+[Unit]
+Description=FlightSight ADS-B collector
+Documentation=https://github.com/leoagenders/flightsight
+After=network.target readsb.service
+Wants=readsb.service
+
+[Service]
+Type=simple
+User=fefifofum
+Group=fefifofum
+WorkingDirectory=/home/fefifofum/flightsight
+ExecStart=/home/fefifofum/trainwatch/venv/bin/python -m flightsight.collector
+Restart=on-failure
+RestartSec=10
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=flightsight-collector
+
+# Hardening — keep this thing in its lane
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=full
+ProtectHome=read-only
+ReadWritePaths=/home/fefifofum/flightsight/data
+ProtectKernelTunables=true
+ProtectKernelModules=true
+ProtectControlGroups=true
+
+[Install]
+WantedBy=multi-user.target
